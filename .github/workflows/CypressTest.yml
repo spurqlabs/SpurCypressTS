@@ -15,5 +15,20 @@ jobs:
       run: npm ci
     - name: Install cypress
       run: npm install cypress --save-dev
+      
+    - name: Install allure combine
+      run: npm i allure-combined
     - name: Run Tests
-      run: npx cypress run
+      run: cypress run --env allure=true
+      
+    - name: Generate Allure HTML Report
+      run:  allure generate allure-results --clean -o allure-report
+      
+    - name: Generate Sharable Allure HTML Report
+      run: allure-combine allure-report --dest Final_Report --auto-create-folders
+      
+    - name: Upload combined Allure HTML report
+      uses: actions/upload-artifact@v2
+      with:
+          name: Final Allure HTML Report
+          path: Final_Report
