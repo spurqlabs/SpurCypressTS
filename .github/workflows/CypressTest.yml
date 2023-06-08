@@ -20,9 +20,6 @@ jobs:
     - name: Install Allure CommandLine
       run: npm i allure-commandline
       
-    - name: Install Allure Combine
-      run: npm i allure-combined
-      
     - name: Run Tests
       run: npx cypress run --env allure=true
       
@@ -35,17 +32,6 @@ jobs:
           $content = Get-Content -Raw $indexFile
           $content = $content -replace '(?s)<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-FVWC4GKEYS"><\/script>[\s\S]*?<\/script>', ''
           $content | Set-Content $indexFile 
-          
-    - name: Generate Sharable Allure HTML result
-      run: allure-combine allure-report --dest Final_Report --auto-create-folders
-      continue-on-error: true
-    
-    - name: Upload combined Allure HTML report
-      uses: actions/upload-artifact@v2
-      with:
-          name: Final Allure HTML Report
-          path: Final_Report
-      continue-on-error: true
       
     - name: Upload Allure HTML report
       uses: actions/upload-artifact@v2
