@@ -26,10 +26,11 @@ jobs:
     - name: Run Tests
       run: npx cypress run --env allure=true
       
-    - name: Generate Allure HTML Report
-      run:  npx cypress run --env allure=true --headless --browser chrome
+    - name: Allure HTML
+      run: npx cypress run --env allure=true --headless --browser chrome
       env:
         PATH: ${{ runner.tool_cache }}/node/16.3.0/x64/bin:${{ env.PATH }}
+
 
       
     - name: Generate Sharable Allure HTML Report
