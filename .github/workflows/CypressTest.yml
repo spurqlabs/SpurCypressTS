@@ -28,7 +28,7 @@ jobs:
       
     - name: Run Tests 2
       run: allure generate allure-results --clean -o allure-report
-      shell: cmd
+      shell: pwsh
       
     - name: Generate Sharable Allure HTML Report
       run: allure-combine allure-report --dest Final_Report --auto-create-folders
