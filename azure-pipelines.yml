@@ -1,0 +1,175 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+
+# resources:
+#   repositories:
+
+#   - repository: SpurTypeScript
+#     name: SpurTypeScript/SpurTypeScript
+#     type: git
+#     ref: main  
+    
+
+#   - repository: SpurMap 
+#     name: SpurMap/SpurMap
+#     type: git
+#     ref: main 
+    
+
+
+
+trigger:
+- main
+
+
+
+
+jobs:
+
+
+  
+  - job: Test 
+    pool:
+     vmImage: ubuntu-latest 
+    
+    
+    steps:
+    
+    - checkout: self
+      
+    # - task: CmdLine@2
+    #   inputs:
+    #     script: dir /b
+
+    # - task: NodeTool@0
+    #   inputs:
+    #       versionSpec: '14.x'
+    #   displayName: 'Install Node.js'
+    # # - task: CacheBeta@1
+    # #   inputs:
+    # #       key: npm | $(Agent.OS) | package-lock.json
+    # #       path: $(Build.SourcesDirectory)/SpurTypeScript/home/vsts/.npm
+    # #       restoreKeys: npm | $(Agent.OS) | package-lock.json
+    # #   displayName: Cache NPM packages
+      
+    # # - task: CacheBeta@1
+    # #   inputs:
+    # #       key: cypress | $(Agent.OS) | package-lock.json
+    # #       path: $(Build.SourcesDirectory)/SpurTypeScript/home/vsts/.cache/Cypress
+    # #       restoreKeys: cypress | $(Agent.OS) | package-lock.json
+          
+    # #   displayName: Cache Cypress binary  
+      
+    
+    
+    # - script: npm ci
+    #   workingDirectory: $(Build.SourcesDirectory)/SpurTypeScript/
+    #   displayName: 'npm install '
+    
+    # # - script: npm run api
+    # #   workingDirectory: $(Build.SourcesDirectory)/SpurTypeScript/
+    # #   displayName: 'test run api'  
+    # #   continueOnError: true
+    
+
+    # - script: npm run smoke
+    #   workingDirectory: $(Build.SourcesDirectory)/SpurTypeScript/
+    #   displayName: 'smoke '
+    #   continueOnError: true   
+
+    # - script: npm run scr
+    #   workingDirectory: $(Build.SourcesDirectory)/SpurTypeScript/
+    #   displayName: ' reports '
+    #   continueOnError: true 
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #      pathToPublish: '$(Build.SourcesDirectory)/SpurTypeScript/Output'
+    #      artifactName: publish artifacts
+
+    # - script: npm run coms
+    #   workingDirectory: $(Build.SourcesDirectory)/SpurTypeScript/
+    #   displayName: ' combine Json '
+    #   continueOnError: true 
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #      pathToPublish: '$(Build.SourcesDirectory)/SpurTypeScript/RawData/Raw.json'
+    #      artifactName: publish artifacts
+
+    # - checkout: SpurMap 
+
+    # # - task: CmdLine@2
+    # #   inputs:
+    # #     script: dir /b
+
+    # - script: npm i
+    #   workingDirectory: $(Build.SourcesDirectory)/SpurMap/
+    #   displayName: ' npm i SpurMap'
+    
+    # - script: cat $(Build.SourcesDirectory)/SpurTypeScript/RawData/Raw.json >> $(Build.SourcesDirectory)/SpurMap/RawData/Raw.json 
+    #   workingDirectory: $(Build.SourcesDirectory)/SpurMap/
+    #   displayName: ' result json '
+       
+    # - script: echo Cypress >> $(Build.SourcesDirectory)/SpurMap/Choice.txt
+    #   workingDirectory: $(Build.SourcesDirectory)/SpurMap/
+    #   displayName: 'write cypress '   
+    
+    # - script: npm run getActualJsonMM
+    #   workingDirectory: $(Build.SourcesDirectory)/SpurMap/
+    #   displayName: 'Actual Json '    
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #      pathToPublish: '$(Build.SourcesDirectory)/SpurMap/RawData/Raw.json'
+    #      artifactName: publish artifacts
+    # # - task: PublishBuildArtifacts@1
+    # #   inputs:
+    # #      pathToPublish: '$(Build.SourcesDirectory)/SpurMap/RawData/Raw.json'
+    # #      artifactName: publish artifacts     
+    # # - script: type $(Build.SourcesDirectory)\SpurMap\RawData\Raw.json > $(Build.SourcesDirectory)\SpurMap\CustomizeJson\Actual.json
+    # #   workingDirectory: $(Build.SourcesDirectory)/SpurMap/
+    # #   displayName: ' result json '
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #      pathToPublish: '$(Build.SourcesDirectory)/SpurMap/CustomizeJson/Actual.json'
+    #      artifactName: publish artifacts    
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #      pathToPublish: '$(Build.SourcesDirectory)/SpurMap/MindMap/Actual.mm'
+    #      artifactName: publish artifacts         
+      
+
+    # - script: cp $(Build.SourcesDirectory)/SpurTypeScript/cypress/integration/Features/*.feature $(Build.SourcesDirectory)/SpurMap/features/
+    #   displayName: 'copy feature file'
+
+    # - script: npm run getExpectedJsonMM
+    #   workingDirectory: $(Build.SourcesDirectory)/SpurMap/
+    #   displayName: 'get expected '  
+
+    # - script: npm run getMergedTwoJsonMM
+    #   workingDirectory: $(Build.SourcesDirectory)/SpurMap/
+    #   displayName: 'Merge '    
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #      pathToPublish: '$(Build.SourcesDirectory)/SpurMap/CustomizeJson/Expected.json'
+    #      artifactName: publish artifacts  
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #      pathToPublish: '$(Build.SourcesDirectory)/SpurMap/MindMap/Expected.mm'
+    #      artifactName: publish artifacts    
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #      pathToPublish: '$(Build.SourcesDirectory)/SpurMap/MindMap/Mereged.mm'
+    #      artifactName: publish artifacts 
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #      pathToPublish: '$(Build.SourcesDirectory)/SpurMap/CustomizeJson/Mereged.json'
+    #      artifactName: publish artifacts           
+         
+       
+    - bash: |
+           git push --prune https://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@github.com/SpurQLab/SpurTypeScript \
+           +refs/remotes/origin/main:refs/heads/main +refs/tags/*:refs/tags/*
+      displayName: 'Copy to Github'
+      condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
