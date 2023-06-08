@@ -26,9 +26,11 @@ jobs:
     - name: Run Tests
       run: npx cypress run --env allure=true
       
-    - name: Generate allure html report
-      shell: cmd
+    - name: Run Tests 2
       run: allure generate allure-results --clean -o allure-report
+      env:
+        PATH: C:\hostedtoolcache\node\16.3.0\x64\bin:${{ env.PATH }}
+      shell: cmd
       
     - name: Generate Sharable Allure HTML Report
       run: allure-combine allure-report --dest Final_Report --auto-create-folders
