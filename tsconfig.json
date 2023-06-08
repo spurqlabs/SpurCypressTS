@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "node"]
+  },
+  "include": [
+    "**/*.ts",
+    "cypress/e2e/Features/step_definitions/Reports.js",
+    "cypress/support/commands.ts",
+    "cypress/e2e/Features/step_definitions/*.ts"
+  ]
+}
