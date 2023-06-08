@@ -17,7 +17,3 @@ jobs:
       run: npm install cypress --save-dev
     - name: Run Tests
       run: npx cypress run
-      env: 
-            DISPLAY: :19
-            CUCUMBER_PUBLISH_TOKEN: 4e0638b1-9bf3-4ef1-989f-3a9cb0dbf8be
-      continue-on-error: true
