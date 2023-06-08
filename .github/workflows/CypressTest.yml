@@ -38,9 +38,18 @@ jobs:
           
     - name: Generate Sharable Allure HTML result
       run: allure-combine allure-report --dest Final_Report --auto-create-folders
+      continue-on-error: true
     
     - name: Upload combined Allure HTML report
       uses: actions/upload-artifact@v2
       with:
           name: Final Allure HTML Report
           path: Final_Report
+      continue-on-error: true
+      
+    - name: Upload Allure HTML report
+      uses: actions/upload-artifact@v2
+      with:
+          name: Allure HTML Report
+          path: allure-report
+
